@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Scaffold a new trainer app folder from templates/ and init it as its own git repo.
 #
-# Usage (run from the trainer/ root that holds index.php and the sibling apps):
-#   bash .agents/skills/new-trainer-app/scripts/scaffold.sh <app-slug> "<App Name>" <CODENAME> "<topic>" [--stack php|vite] [--join-key familyId] [--dest <dir>]
+# Usage (run from anywhere; the app is created at <dest>/<app-slug>, dest defaults to the current directory):
+#   bash <skill>/scripts/scaffold.sh <app-slug> "<App Name>" <CODENAME> "<topic>" [--stack php|vite] [--join-key familyId] [--dest <dir>]
 #
 # Example:
-#   bash .agents/skills/new-trainer-app/scripts/scaffold.sh circuits-trainer "Circuits Trainer" CIRCUIT_CORE "electrical circuits for devices and smart homes" --stack php
+#   bash ~/.agents/skills/new-trainer-app/scripts/scaffold.sh circuits-trainer "Circuits Trainer" CIRCUIT_CORE "electrical circuits for devices and smart homes" --stack php --dest ~/dev/apps
 set -euo pipefail
 
 SKILL_DIR="$(cd "$(dirname "$0")/.." && pwd)"
@@ -49,7 +49,13 @@ DATE_ISO="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 APP_DIR="$DEST/$APP_SLUG"
 
 [[ -e "$APP_DIR" ]] && { echo "Refusing to overwrite existing path: $APP_DIR"; exit 1; }
-[[ -f "$DEST/index.php" ]] || echo "Warning: $DEST has no index.php; is this the trainer/ root?"
+mkdir -p "$DEST"
+
+# Optional launcher page (a PHP file with an $apps array, like trainer/index.php). Not required.
+LAUNCHER=""
+if [[ -f "$DEST/index.php" ]] && grep -q '\$apps' "$DEST/index.php"; then
+  LAUNCHER="$DEST/index.php"
+fi
 
 # Token substitution. Uses | as the sed delimiter; escape it in values.
 esc() { printf '%s' "$1" | sed -e 's/[|&\\]/\\&/g'; }
@@ -98,6 +104,14 @@ touch "$APP_DIR/context/toc/.gitkeep" "$APP_DIR/context/notes/.gitkeep"
   git -c user.useConfigOnly=false commit -q -m "Scaffold $APP_NAME ($CODENAME) from new-trainer-app skill" || true
 )
 
+if [[ -n "$LAUNCHER" ]]; then
+  LAUNCHER_LINE="  launcher     $LAUNCHER  (append docs/index-php-card.snippet.php to \$apps; href => '$APP_HREF')"
+  LAUNCHER_STEP="  - Append docs/index-php-card.snippet.php into $LAUNCHER \$apps (step 1.9)"
+else
+  LAUNCHER_LINE="  launcher     none found in $DEST (step 1.9 is optional; delete docs/index-php-card.snippet.php if unused)"
+  LAUNCHER_STEP="  - No launcher page: skip step 1.9, or pass the launcher path to the agent"
+fi
+
 cat <<EOF
 
 Scaffolded: $APP_DIR
@@ -105,12 +119,12 @@ Scaffolded: $APP_DIR
   verify       $VERIFY_CMD
   join key     $JOIN_KEY
   progress key $PROGRESS_KEY
-  root card    href => '$APP_HREF'  (snippet: docs/index-php-card.snippet.php)
+$LAUNCHER_LINE
 
 Next (Phase 1 continues in SKILL.md from step 1.2):
   - Fill every <!-- agent: --> and AGENT: marker:
       grep -rn 'agent:' $APP_DIR --include='*.md' --include='*.json' --include='*.php' --include='*.sh' | wc -l
   - Copy LOOPS/LOOP-Section.md once per resource type, then delete it.
   - Add sources to context/clone.sh + context/README.md, run: bash context/clone.sh
-  - Append docs/index-php-card.snippet.php into ../index.php \$apps
+$LAUNCHER_STEP
 EOF

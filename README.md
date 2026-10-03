@@ -11,7 +11,7 @@ By Weng (Weng Fei Fung)
 
 ## What it does
 
-You give it a **learning goal or mastery goal**, phrased the way you would say it to a tutor: "master electric circuits so I can build small robots and home automation", "get fluent at mental math for investor conversations", "learn to read stock charts and decide before the aftermath". The skill then creates an **interactive web app that teaches, coaches, and quizzes you** on that topic, deployed as a new card on your trainer launcher.
+You give it a **learning goal or mastery goal**, phrased the way you would say it to a tutor: "master electric circuits so I can build small robots and home automation", "get fluent at mental math for investor conversations", "learn to read stock charts and decide before the aftermath". The skill then creates an **interactive web app that teaches, coaches, and quizzes you** on that topic, in whatever folder you choose. If you host several trainers behind a launcher page like the one below, it can add a card there too; that part is optional.
 
 Based on your goal, it decides **what kinds of learning and quizzing** the app should have. Not every topic needs the same things: circuits need fault-diagnosis cases and a small simulation; mental math needs timed drills; stock reading needs decide-and-reveal cases; piano needs step-by-step coaching and spaced recall. The skill picks from concept guides, step-by-step coaching trees, timed drills, quizzes, decision cases, hands-on labs, simulations, mini games, and cheatsheets, and justifies each choice in the plan.
 
@@ -33,42 +33,35 @@ Three phases, each in its own Cursor session:
 
 The skill writes planning docs and loop prompts. It does not write runtime code; the loops do. "Mastered" is defined as a number (every unit in the syllabus meets its coverage floor on every declared mastery rung), so the content loop knows when to stop.
 
-## Where it lives
+## Install
 
-```
-trainer/
-├── index.php                      # root launcher (one card per app)
-├── stocks-trainer/                # own git repo
-├── leetcode-coach/                # own git repo
-├── mental-math/                   # own git repo
-└── .agents/skills/new-trainer-app/   # this skill — own git repo, outside every app
-```
-
-`trainer/` itself is not a git repo. Each app is. This skill folder is too, so it can be versioned and reused in another workspace without pulling in any app.
-
-## Install elsewhere
+Clone into the skills folder of any workspace (project-level) or your home folder (available everywhere):
 
 ```bash
+# project
 git clone https://github.com/Siphon880gh/skill-create-trainer-app-to-master-anything.git .agents/skills/new-trainer-app
+
+# or personal
+git clone https://github.com/Siphon880gh/skill-create-trainer-app-to-master-anything.git ~/.agents/skills/new-trainer-app
 ```
 
-Cursor discovers skills under `.agents/skills/` in the workspace root. The skill is `disable-model-invocation: true`, so invoke it by name.
+The skill is `disable-model-invocation: true`, so invoke it by name. The new app can be created in **any folder**; it does not need to sit next to other trainers, and it never depends on them at runtime.
 
 ## Use
 
-In Cursor, from the `trainer/` workspace:
+In Cursor:
 
 ```text
-Use the new-trainer-app skill to create a trainer for electrical circuits, for a maker who wants to build devices and smart-home automations.
+Use the new-trainer-app skill to create a trainer for electrical circuits, for a maker who wants to build devices and smart-home automations. Put it in ~/dev/apps.
 ```
 
 The agent will:
 
-- run `scripts/scaffold.sh` to create `<app-slug>/` with every artifact pre-filled with tokens
+- run `scripts/scaffold.sh` to create `<app-slug>/` (own git repo) with every artifact pre-filled with tokens
 - act as a subject expert and research sources (open repos, book TOCs, course syllabi) into `<app>/context/`
 - choose resource types with a justification table
 - fill `EPIC_MAP.md`, `IMPLEMENTATION_STORIES.md`, `RESOURCES.md`, `.agents/state.json`, `.impeccable.md`, the milestone loop, the content graph, and one section loop per type
-- add a card to `trainer/index.php`
+- add a card to your launcher page if you have one (optional)
 - hand you the Phase 2 command
 
 Then, in a **new** session inside the app folder:
@@ -86,12 +79,11 @@ After MVP freeze, in another new session:
 ## Manual scaffold
 
 ```bash
-cd trainer
-bash .agents/skills/new-trainer-app/scripts/scaffold.sh circuits-trainer "Circuits Trainer" CIRCUIT_CORE \
-  "electrical circuits for devices and smart homes" --stack php
+bash ~/.agents/skills/new-trainer-app/scripts/scaffold.sh circuits-trainer "Circuits Trainer" CIRCUIT_CORE \
+  "electrical circuits for devices and smart homes" --stack php --dest ~/dev/apps
 ```
 
-Options: `--stack php|vite` (default `php`), `--join-key <name>` (default `familyId`), `--dest <dir>` (default cwd). The script refuses to overwrite an existing folder, substitutes `{{TOKENS}}`, writes `.gitignore`, and makes the first commit. Every `<!-- agent: -->` / `AGENT:` marker left in the output must be filled by the agent in Phase 1.
+Options: `--stack php|vite` (default `php`), `--join-key <name>` (default `familyId`), `--dest <dir>` (default cwd; created if missing). The script refuses to overwrite an existing folder, substitutes `{{TOKENS}}`, writes `.gitignore`, makes the first commit, and reports whether a launcher `index.php` with an `$apps` array exists in `--dest` (if not, the card step is skipped). Every `<!-- agent: -->` / `AGENT:` marker left in the output must be filled by the agent in Phase 1.
 
 ## Layout
 

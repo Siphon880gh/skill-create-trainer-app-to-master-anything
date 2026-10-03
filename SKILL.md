@@ -1,9 +1,9 @@
 ---
 name: new-trainer-app
 description: >-
-  Plan and scaffold a new sibling trainer app (guides, step-by-step coaching,
-  drills, quizzes, cases, games, simulations) for any topic, following the
-  conventions shared by stocks-trainer, leetcode-coach, and mental-math:
+  Plan and scaffold a new trainer app (guides, step-by-step coaching, drills,
+  quizzes, cases, games, simulations) for any topic, in any folder, following
+  the conventions proven by stocks-trainer, leetcode-coach, and mental-math:
   EPIC_MAP / IMPLEMENTATION_STORIES / .agents/state.json, a milestone loop that
   builds the runtime, and a LOOPS/ content graph that fills it to computable
   coverage floors. Use when the user asks for a new trainer, coach, study,
@@ -14,7 +14,7 @@ disable-model-invocation: true
 
 # New Trainer App
 
-Produces a new app folder next to the existing trainers, as its own git repo, with every planning and loop artifact the other apps use. The runtime is **not** written here; it is built later by the milestone loop this skill emits. Content is filled later by the content graph this skill emits.
+Produces a new app folder **anywhere the user chooses** (default: the current working directory), as its own git repo, with every planning and loop artifact the reference apps use. The app does not depend on the reference apps or on a launcher page; those are optional. The runtime is **not** written here; it is built later by the milestone loop this skill emits. Content is filled later by the content graph this skill emits.
 
 Read [reference/conventions.md](reference/conventions.md) once before the first run. It lists the shared constraints and the artifact inventory copied from the three existing apps.
 
@@ -28,6 +28,8 @@ Collect before Phase 1 (ask only for what is missing; infer the rest):
 | Learner goal (the "so that") | Build devices and wire smart-home automations without frying parts |
 | Learner persona + session length | Maker at a bench, 10â€“20 min sessions |
 | App slug / name / CODENAME | `circuits-trainer` / Circuits Trainer / `CIRCUIT_CORE` |
+| Destination folder | Where `<app-slug>/` is created. Default: current directory. Any path works; it does not need to sit next to other trainers. |
+| Launcher (optional) | A PHP launcher page like `trainer/index.php` with an `$apps` array, if the user has one and wants a card added |
 | Stack | `php` (server-rendered, like leetcode-coach / mental-math) or `vite` (React + TS, like stocks-trainer). Default `php` unless the feature set needs heavy client state (simulations, charts). |
 
 ## Phases
@@ -55,19 +57,27 @@ Copy this checklist and track it:
 - [ ] 1.6 Fill EPIC_MAP, IMPLEMENTATION_STORIES, state.json, RESOURCES, .impeccable.md, README
 - [ ] 1.7 Fill the milestone loop and the content graph + one section loop per resource type
 - [ ] 1.8 Seed .agents/skills in the app
-- [ ] 1.9 Register the card in ../index.php
+- [ ] 1.9 (optional) Register a card in the user's launcher page, if they have one
 - [ ] 1.10 Commit, then hand off with the Phase 2 command
 ```
 
 ### 1.1 Scaffold
 
-Run from the `trainer/` root (the folder that holds `index.php` and the sibling apps):
+Run from anywhere. `<app-slug>/` is created inside `--dest` (default: current directory):
 
 ```bash
-bash .agents/skills/new-trainer-app/scripts/scaffold.sh <app-slug> "<App Name>" <CODENAME> "<topic>" --stack php|vite
+bash <path-to-this-skill>/scripts/scaffold.sh <app-slug> "<App Name>" <CODENAME> "<topic>" --stack php|vite [--dest <folder>]
 ```
 
-The script refuses to overwrite an existing folder. It copies `templates/`, substitutes `{{TOKENS}}`, writes `.gitignore`, runs `git init`, and makes the first commit. Everything still containing `<!-- agent: ... -->` or a `{{...}}` token must be filled by hand in the following steps.
+The script refuses to overwrite an existing folder. It copies `templates/`, substitutes `{{TOKENS}}`, writes `.gitignore`, runs `git init`, and makes the first commit. If `--dest` contains a launcher `index.php` with an `$apps` array it says so; otherwise step 1.9 is skipped. Everything still containing `<!-- agent: ... -->` or a `{{...}}` token must be filled by hand in the following steps.
+
+The three reference apps are public. When they are not available locally, add any you want as pattern references to the new app's `context/clone.sh` (the same way `mental-math/context/clone.sh` clones its siblings):
+
+```
+https://github.com/Siphon880gh/Stocks-Trainer.git    # React/Vite: paths, cases, coach sessions, progress store
+https://github.com/Siphon880gh/leetcode-coach.git    # PHP: guides, mini games, coaching trees, harness skill
+https://github.com/Siphon880gh/mental-math.git       # PHP: two-track Guides hub, drills, coach rewind, LOOPS graph
+```
 
 ### 1.2 Syllabus catalog
 
@@ -134,9 +144,9 @@ Fill, in this order, removing every `<!-- agent: -->` comment: `RESOURCES.md` â†
 
 Copy `templates/agents-skills/add-unit/SKILL.md` into the app as `.agents/skills/add-<type>/SKILL.md` for each resource type whose authoring will repeat (at minimum Coach). Leave file paths as TODO where the runtime does not exist yet; the milestone loop fills them when the runtime lands.
 
-### 1.9 Register the card
+### 1.9 Register the card (optional)
 
-Add an entry to `$apps` in `../index.php` using `templates/index-php-card.php` as the shape. `href` is `<slug>/` for `php`, `<slug>/dist/` for `vite`. Append after the last existing app; keep the array literal valid.
+Only if the user has a launcher page (a PHP file with an `$apps` array, like `trainer/index.php` at wengindustries.com/trainer). Add an entry using the snippet the scaffold wrote to `docs/index-php-card.snippet.php`. `href` is relative to the launcher: `<slug>/` for `php`, `<slug>/dist/` for `vite`. Append after the last existing app; keep the array literal valid. If there is no launcher, skip this step and delete the snippet.
 
 ### 1.10 Hand off
 

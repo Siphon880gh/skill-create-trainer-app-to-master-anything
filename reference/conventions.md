@@ -1,6 +1,6 @@
 # Conventions shared by the existing trainer apps
 
-Derived from `stocks-trainer/`, `leetcode-coach/`, and `mental-math/` (siblings of this skill's parent folder). When a template here is unclear, open the matching file in one of those apps.
+Derived from three public reference apps: [Stocks-Trainer](https://github.com/Siphon880gh/Stocks-Trainer), [leetcode-coach](https://github.com/Siphon880gh/leetcode-coach), and [mental-math](https://github.com/Siphon880gh/mental-math). When a template here is unclear, open the matching file in one of those apps — locally if they sit near the skill, otherwise clone them into the new app's `context/repos/` via `context/clone.sh`. The new app never depends on them at runtime.
 
 ## Artifact inventory
 
@@ -20,7 +20,7 @@ Derived from `stocks-trainer/`, `leetcode-coach/`, and `mental-math/` (siblings 
 | `.agents/skills/*/SKILL.md` | Repeated authoring workflows (add coaching session, add pack, harness) | `mental-math/.agents/skills/add-coaching-session/SKILL.md` |
 | `.impeccable.md` | Design context: users, brand personality, aesthetic direction, references, anti-references | `mental-math/.impeccable.md` |
 | `README.md` | Learner-facing: what it trains, start here, how to run | `stocks-trainer/README.md` |
-| `../index.php` | Root launcher; one card per app in `$apps` | `trainer/index.php` |
+| launcher `index.php` *(optional)* | A launcher page with one card per app in `$apps`; only if the user hosts several trainers together | [wengindustries.com/trainer](https://wengindustries.com/trainer/) |
 
 ## Loop prompt anatomy (both loop kinds)
 

@@ -10,14 +10,14 @@ Design context for `{{APP_SLUG}}` ({{CODENAME}}). All future UI work in this rep
 
 ### Brand personality
 
-<!-- agent: three words, then 3 bullets of concrete behaviors. The sibling apps use: Focused. Honest. Quiet. — says SAMPLE out loud; names the method before the answer; no trophies, no confetti, no streak popups. -->
+<!-- agent: three words, then 3 bullets of concrete behaviors. The reference apps use: Focused. Honest. Quiet. — says SAMPLE out loud; names the method before the answer; no trophies, no confetti, no streak popups. -->
 
 ### Aesthetic direction
 
-<!-- agent: palette (dark/light, one accent), type, density. Reference sibling apps for patterns:
-- ../leetcode-coach for tag popovers and per-card chips
-- ../stocks-trainer for the session-peek banner and path chooser
-- ../mental-math for the two-track Guides hub and coach rewind UI -->
+<!-- agent: palette (dark/light, one accent), type, density. Reference apps for patterns (local siblings if present, otherwise clone via context/clone.sh — see context/README.md):
+- leetcode-coach (github.com/Siphon880gh/leetcode-coach) for tag popovers and per-card chips
+- Stocks-Trainer (github.com/Siphon880gh/Stocks-Trainer) for the session-peek banner and path chooser
+- mental-math (github.com/Siphon880gh/mental-math) for the two-track Guides hub and coach rewind UI -->
 
 Anti-references: mosaic chip walls, colorful gamified dashboards, animated confetti, "you're on fire" motion, live-data theater.
 
