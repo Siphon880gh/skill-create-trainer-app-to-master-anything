@@ -30,12 +30,12 @@ Prefer **no interval** so each wake adds the next content unit.
 
 ## Shared rules (every section)
 
-- Educational / non-live practice data only (no on-screen SAMPLE stamp required).
+- Educational / non-live practice data only. No SAMPLE-in-prose; no "Recall checkpoint" padding; no obsolete `sample: true` stamps.
 - Rewrite from `context/` — do not paste those files verbatim.
 - `{{JOIN_KEY}}` is the join key. Do not invent a parallel enum.
 - Tracks are labeled in full on Guides.
 - Guide → Coach uses the **same slug**.
-- One content unit per tick.
+- One content unit per tick (never batch Stage-0 guides).
 - Distinct items: do not clone-and-tweak a prompt with a renamed title.
 - After any code change: `{{VERIFY_CMD}}`.
 - Create or adapt `.agents/skills/*` when the same authoring workflow repeats.

@@ -47,6 +47,8 @@ Error Handoff Summary fields: epic/milestone/story (or stage/family/unit), chron
 
 Park a node (treat as Done for graph purposes, note `parked: <epic>_missing`) when its runtime epic has not shipped. Never scaffold runtime inside a content tick.
 
+**Abort / FAIL** a graph tick that adds filler padding or SAMPLE-in-prose to meet a coverage floor. Done(guides) requires the section quality rubric (concrete example, no SAMPLE/checkpoints, no identical padding), not file count + word count alone. One guide per Stage-0 tick — never batch all families in one commit.
+
 ## Milestone queue names
 
 `implementation_order` (P0 → MVP freeze) → `post_mvp_order` → `later_order` → `advanced_order` (+ topic-specific queues such as stocks' `market_types_order`). Never skip a queue; never enter `post_mvp_order` until the MVP freeze checklist is green or a human GO is recorded.
@@ -61,9 +63,13 @@ Park a node (treat as Done for graph purposes, note `parked: <epic>_missing`) wh
 ## Hard constraints (repeat in every emitted doc)
 
 - Deterministic coaching = decision graphs with `wrong` nodes that `rewind_to` a prior layer and ≥1 `success`; no runtime LLM
-- Educational / non-live practice data; no LIVE / REAL_TIME theater; do not stamp SAMPLE on every page
+- Educational / non-live practice data; no LIVE / REAL_TIME theater. Never stamp SAMPLE on UI chrome; never put SAMPLE / "SAMPLE example" / "SAMPLE lesson" in learner-facing prose (guides, coach, quiz, cases, cheatsheets, drills)
+- Never pad with "Recall checkpoint" lines, identical repeated paragraphs, or slogan loops to hit a word-count floor — expand the concrete worked example or rewrite
+- Guide quality bar: rule; why; one concrete worked example (numbers / structures / named steps); when to use; when to refuse. Prefer ~400–600 words inside 300–800. See `reference/guide-quality.md`
+- One unit per tick always; Stage 0 must not batch-author dozens of guides in one commit. Floors count quality units, not green PHPUnit races
+- Word-count + paste tests are necessary but not sufficient — also reject SAMPLE-in-prose, recall-checkpoint padding, missing concrete example, obsolete `sample: true` stamps
 - `localStorage` progress key, versioned (`<codename>_progress_v1`); corrupt → reset with recovery flag
 - Join key everywhere; resource type is a separate field/route
 - Rewrite context, never paste
-- One unit per tick; auto-verify before PASS
+- Auto-verify before PASS
 - Create or adapt `.agents/skills/*` when a workflow repeats; new purpose → new skill, do not overload

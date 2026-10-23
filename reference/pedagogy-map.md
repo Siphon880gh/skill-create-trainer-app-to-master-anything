@@ -6,7 +6,7 @@ Pick the **domain kind(s)** first, then take the recommended types. Justify ever
 
 | Type | Learner does | Builds (rung) | Runtime cost | Include when |
 |------|--------------|---------------|--------------|--------------|
-| **Guide** | Reads one unit: rule, why it works, worked example, when to use | recognize | low | Always |
+| **Guide** | Reads one unit: rule, why it works, **concrete** worked example (values/structures/steps), when to use / refuse | recognize | low | Always |
 | **Coach** (step-by-step) | Walks a deterministic choice tree; wrong → explain → rewind; success node | explain | low–medium (nav engine once) | Always; one per guide, same slug |
 | **Drill** | Answers a timed bank (typed or MCQ) with a thought-chain reveal | apply | low | Unit has a fast closed-form answer |
 | **Quiz** | Untimed MCQ/multi-select with explanation per option | recognize → apply | low | Conceptual units with common misconceptions |
@@ -57,3 +57,4 @@ Floors turn rungs into counts: e.g. `guides_per_family 1`, `coach_per_guide 1`, 
 - Games for every unit → the Games loop should record skips most ticks
 - Coach trees that are quizzes with buttons → teach *which method to pick*, with wrong branches that explain and rewind
 - Pasting textbook prose into guides → outline in `context/toc/`, rewrite in original words
+- **Guides:** SAMPLE / "SAMPLE example" / "SAMPLE lesson" labels in prose; "Recall checkpoint" or identical-paragraph padding; batch Stage-0 authorship of dozens of guides; slogan pads to hit 300 words; abstract paraphrase sold as a worked example (must have concrete values/structures/steps)

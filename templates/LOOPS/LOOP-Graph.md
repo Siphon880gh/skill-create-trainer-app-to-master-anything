@@ -98,7 +98,7 @@ Walk tracks in order (A, then B, …):
 ## Stage machine (`FOUNDATION_THEN_ECHO`)
 
 ```text
-Stage 0  DRAIN Guides until Done(guides) — track order
+Stage 0  DRAIN Guides until Done(guides) — track order; **one guide per tick**
 Stage 1  PAIR Coach: exclusive coach ticks until every guide slug has a session
 Stage 2  ECHO families 1 → N (remaining hops)
 Stage 3  DRAIN leftover section floors in drain order
@@ -106,6 +106,8 @@ Done(graph) when every section file's Done(section) is true
 ```
 
 If Stage 0 is already met, start at Stage 1. Stage 2 may complete some floors early. Stage 3 only fills gaps.
+
+**Stage 0 / Done(guides):** forbid batching all guides in one tick or one commit. Done(guides) requires each guide to pass the section quality rubric (concrete worked example; no SAMPLE / Recall checkpoint; no identical-paragraph padding; 300–800 real teaching words) — not merely file count + word count. **FAIL** any tick that games a floor with filler padding or SAMPLE-in-prose.
 
 ---
 
@@ -137,7 +139,7 @@ Run the LOOPS/ section content loops as one graph until every section's Done(sec
 # CONTEXT
 - Picker + families: `LOOPS/LOOP-Graph.md`
 - Authoring: only the chosen `LOOPS/LOOP-*.md`
-- Shared: educational/non-live data; original copy from `context/`; `{{JOIN_KEY}}` join key; tracks labeled in full; Guide→Coach same slug; Beginner unlocks unchanged; one unit per tick
+- Shared: educational/non-live data; no SAMPLE-in-prose; no recall-checkpoint padding; original copy from `context/`; `{{JOIN_KEY}}` join key; tracks labeled in full; Guide→Coach same slug; Beginner unlocks unchanged; one unit per tick (never batch Stage 0)
 - Auto-verify: `{{VERIFY_CMD}}`
 - Policy default: FOUNDATION_THEN_ECHO
 - If MVP freeze is not green: STOP and run AGENTS_LOOP-Continue-Milestone.md instead
@@ -162,7 +164,7 @@ PASS only if:
 - Done(graph) → STOP with per-section floors vs counts.
 - Error budget 10 on the blocking unit → handoff (stage, family, loop, id, stderr).
 - Human verification: policy change; new `{{JOIN_KEY}}` not in RESOURCES.
-- Abort: running two section loops without the picker; rewriting runtime "for cleanup"; running the milestone loop in the same session.
+- Abort: running two section loops without the picker; rewriting runtime "for cleanup"; running the milestone loop in the same session; batching Stage-0 guides; padding / SAMPLE-in-prose to meet a floor.
 
 # TICK OUTPUT (keep short)
 1. policy + stage (if any) + family_id (if any) + track

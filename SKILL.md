@@ -123,7 +123,7 @@ Rules:
 | diagnose | find what is wrong in a scenario | Case / Simulation |
 | design | combine units to meet a goal | Case pack / Lab / Simulation target |
 
-Then set floors per family per type (e.g. `guides_per_family: 1`, `coach_per_guide: 1`, `drills_per_family: 8`, `cases_per_track: 6`). **Done(graph)** = every family meets every floor on every rung the plan declared for its track. Write the echo-family table in `LOOPS/LOOP-Graph.md` from the catalog (one row per family, hops = types that apply).
+Then set floors per family per type (e.g. `guides_per_family: 1`, `coach_per_guide: 1`, `drills_per_family: 8`, `cases_per_track: 6`). **Done(graph)** = every family meets every floor on every rung the plan declared for its track. Write the echo-family table in `LOOPS/LOOP-Graph.md` from the catalog (one row per family, hops = types that apply). Floors count *quality* units only — see [reference/guide-quality.md](reference/guide-quality.md). Plan the GuidesTest (or stack equivalent) quality gates **before** Phase 3 so Stage 0 cannot green on SAMPLE/padding.
 
 ### 1.6 Fill planning docs
 
@@ -136,9 +136,10 @@ Fill, in this order, removing every `<!-- agent: -->` comment: `RESOURCES.md` �
 ### 1.7 Fill the loops
 
 - `AGENTS_LOOP-Continue-Milestone.md`: set the queue table, the per-epic implementation notes under "Implement the current story only", and the verify commands.
-- `LOOPS/LOOP-Graph.md`: nodes table (one per resource type), drain order, echo-family table, floors.
-- Copy `LOOPS/LOOP-Section.md` once per resource type as `LOOP-<Type>.md` and fill its coverage queue, authoring cadence, and rubric. Delete the generic file afterwards.
+- `LOOPS/LOOP-Graph.md`: nodes table (one per resource type), drain order, echo-family table, floors. Stage 0 forbids batching all guides in one tick; Done(guides) requires the section quality rubric, not file count + word count alone. Abort/FAIL ticks that pad or inject SAMPLE-in-prose to meet a floor.
+- Copy `LOOPS/LOOP-Section.md` once per resource type as `LOOP-<Type>.md` and fill its coverage queue, authoring cadence, and rubric. For Guides (and any prose type), bake in the [guide-quality](reference/guide-quality.md) gates: no SAMPLE / Recall checkpoint in body; concrete worked example; no identical padding paragraphs; one unit per tick; expand the example — never pad. Delete the generic file afterwards.
 - `LOOPS/README.md`: the run-line table.
+- Before Phase 3: ensure GuidesTest (or Vitest equivalent) rejects SAMPLE-in-prose, recall-checkpoint / ≥3 identical paragraphs, missing digit in the worked example, and `sample: true` stamps. Word count alone is not enough.
 
 ### 1.8 Seed app skills
 
@@ -180,7 +181,11 @@ Both inherit: one unit per tick, auto-verify before PASS, 10-round error budget 
 ## Shared constraints (inherit in every emitted doc)
 
 - Deterministic coaching trees; **no runtime LLM**
-- Educational / non-live practice data only (do not stamp SAMPLE on every page)
+- Educational / non-live practice data only. **Never stamp SAMPLE on UI chrome, and never put SAMPLE / "SAMPLE example" / "SAMPLE lesson" in learner-facing prose** (guide bodies, coach messages, quiz prompts, cases, cheatsheets, drills).
+- **Never pad** bodies with "Recall checkpoint" lines, identical repeated paragraphs, or slogan append loops to hit a word-count floor. If a unit is short, expand the **worked example with real steps and concrete values**, or rewrite — do not append filler.
+- **Guide quality bar (non-negotiable):** rule; why (interview/failure mode); one **concrete** worked example (numbers, small structures, named steps a human can rehearse — not abstract restatement of the rule); when to use; when to refuse. Prefer ~400–600 real teaching words inside the 300–800 band. See [reference/guide-quality.md](reference/guide-quality.md).
+- **One unit per tick always.** Stage 0 / `FOUNDATION_THEN_ECHO` must not batch-author dozens of guides in one commit. Coverage floors are counts of *quality* units, not a race to green PHPUnit.
+- Word-count + paste tests are necessary but **not sufficient**. Section loops and PHPUnit (or equivalent) MUST also reject SAMPLE-in-prose, recall-checkpoint padding, missing concrete example, and obsolete `sample: true` flags meant as UI stamps.
 - Progress in `localStorage` under one versioned key; no auth in MVP
 - Rewrite source material in original wording; never paste `context/` verbatim into the UI
 - Join key is the only cross-surface id; do not invent a parallel enum
@@ -197,3 +202,4 @@ Both inherit: one unit per tick, auto-verify before PASS, 10-round error budget 
 | `reference/conventions.md` | Shared constraints + artifact inventory from the three existing apps |
 | `reference/pedagogy-map.md` | Domain kind → resource types, with definitions and runtime cost |
 | `reference/research.md` | Sourcing rules for `context/` (repos, TOCs, notes, licensing, when to ask) |
+| `reference/guide-quality.md` | Guide quality bar + anti-patterns (SAMPLE, padding, batch Stage 0) |

@@ -28,7 +28,7 @@ Companions: [`RESOURCES.md`](../RESOURCES.md) · [`LOOP-Graph.md`](./LOOP-Graph.
 
 ## Product intent
 
-<!-- agent: 3–6 lines. What the learner sees on this surface; what must always be present (e.g. coach CTA, thought-chain reveal); what this surface must never become (second hub, calculator, live data). Do not require an on-screen SAMPLE stamp. -->
+<!-- agent: 3–6 lines. What the learner sees on this surface; what must always be present (e.g. coach CTA, thought-chain reveal); what this surface must never become (second hub, calculator, live data). Never put SAMPLE / SAMPLE example / SAMPLE lesson / Recall checkpoint in learner-facing prose. Never pad with identical repeated paragraphs. For Guides: rule, why, one concrete worked example (numbers/structures/steps), when to use, when to refuse; prefer ~400–600 words inside 300–800; expand the example if short — do not append filler. -->
 
 ---
 
@@ -66,7 +66,7 @@ Skip a family that already meets the floor. Skip-only families (Games) record a 
 
 # STEP-BY-STEP CADENCE
 1. **Orient** — first family below floor (track order).
-2. **Author** — <!-- agent: unit-specific cadence: length, required parts, educational setup, distinctness rule -->
+2. **Author** — <!-- agent: unit-specific cadence: length, required parts, educational setup, distinctness rule --> Exactly one unit this tick — never batch. Never pad with SAMPLE labels, Recall checkpoints, or identical repeated paragraphs; if under the word floor, expand the concrete worked example.
 3. **Wire** — join key, track, related slugs.
 4. **Verify** — <!-- agent: what to check on screen / in validator -->; no verbatim paste from `context/`.
 5. **On FAIL** — ≤10 rounds.
@@ -75,6 +75,11 @@ Skip a family that already meets the floor. Skip-only families (Games) record a 
 - [ ] One unit; unique id; `{{JOIN_KEY}}` + track set
 - [ ] <!-- agent: type-specific checks (coach: validator passes, ≥2 wrong nodes with rewind, ≥1 success) -->
 - [ ] Original copy
+- [ ] No SAMPLE / SAMPLE example / SAMPLE lesson / Recall checkpoint in body (prose types)
+- [ ] Worked example has concrete values (digit or named structure) — Guides and similar
+- [ ] No identical paragraph appearing ≥3 times (padding)
+- [ ] Prefer expanding the example over filler if under 300 words
+- [ ] No obsolete `sample: true` / `meta.sample` stamp
 - [ ] `{{VERIFY_CMD}}` exits 0
 
 # STOP CONDITIONS
