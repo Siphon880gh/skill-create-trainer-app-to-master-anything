@@ -54,7 +54,7 @@ Not chosen: <!-- agent: name the types you rejected and why in one line each -->
 
 ### Constraints
 
-- SAMPLE / educational data only; no live APIs, credentials, or hardware I/O
+- Educational / non-live practice data only; no live APIs, credentials, or hardware I/O
 - Progress in `localStorage` (`{{PROGRESS_KEY}}`); no auth in MVP
 - Step coaching = deterministic graphs only — no runtime LLM
 - `context/` is a source of ideas; rewrite lessons (do not paste)

@@ -137,7 +137,7 @@ Run the LOOPS/ section content loops as one graph until every section's Done(sec
 # CONTEXT
 - Picker + families: `LOOPS/LOOP-Graph.md`
 - Authoring: only the chosen `LOOPS/LOOP-*.md`
-- Shared: SAMPLE; original copy from `context/`; `{{JOIN_KEY}}` join key; tracks labeled in full; Guide→Coach same slug; Beginner unlocks unchanged; one unit per tick
+- Shared: educational/non-live data; original copy from `context/`; `{{JOIN_KEY}}` join key; tracks labeled in full; Guide→Coach same slug; Beginner unlocks unchanged; one unit per tick
 - Auto-verify: `{{VERIFY_CMD}}`
 - Policy default: FOUNDATION_THEN_ECHO
 - If MVP freeze is not green: STOP and run AGENTS_LOOP-Continue-Milestone.md instead

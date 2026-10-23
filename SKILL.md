@@ -180,7 +180,7 @@ Both inherit: one unit per tick, auto-verify before PASS, 10-round error budget 
 ## Shared constraints (inherit in every emitted doc)
 
 - Deterministic coaching trees; **no runtime LLM**
-- SAMPLE / educational data only; label it on screen
+- Educational / non-live practice data only (do not stamp SAMPLE on every page)
 - Progress in `localStorage` under one versioned key; no auth in MVP
 - Rewrite source material in original wording; never paste `context/` verbatim into the UI
 - Join key is the only cross-surface id; do not invent a parallel enum

@@ -28,7 +28,7 @@ Companions: [`RESOURCES.md`](../RESOURCES.md) · [`LOOP-Graph.md`](./LOOP-Graph.
 
 ## Product intent
 
-<!-- agent: 3–6 lines. What the learner sees on this surface; what must always be present (e.g. SAMPLE label, coach CTA, thought-chain reveal); what this surface must never become (second hub, calculator, live data). -->
+<!-- agent: 3–6 lines. What the learner sees on this surface; what must always be present (e.g. coach CTA, thought-chain reveal); what this surface must never become (second hub, calculator, live data). Do not require an on-screen SAMPLE stamp. -->
 
 ---
 
@@ -66,7 +66,7 @@ Skip a family that already meets the floor. Skip-only families (Games) record a 
 
 # STEP-BY-STEP CADENCE
 1. **Orient** — first family below floor (track order).
-2. **Author** — <!-- agent: unit-specific cadence: length, required parts, SAMPLE setup, distinctness rule -->
+2. **Author** — <!-- agent: unit-specific cadence: length, required parts, educational setup, distinctness rule -->
 3. **Wire** — join key, track, related slugs.
 4. **Verify** — <!-- agent: what to check on screen / in validator -->; no verbatim paste from `context/`.
 5. **On FAIL** — ≤10 rounds.

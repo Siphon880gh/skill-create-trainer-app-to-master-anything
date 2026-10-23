@@ -120,7 +120,7 @@ new-trainer-app/
 - **"Mastered" is a number.** Done(graph) is computed from the family catalog × per-type floors × declared mastery rungs. No loop runs "until it feels complete".
 - **`context/repos/` is gitignored; `context/toc/` and `context/notes/` are tracked.** Clones are reproducible via `clone.sh`; the agent's own outlines and notes are small and worth keeping.
 - **Guides and Coach are mandatory.** Every other type is chosen per topic from `reference/pedagogy-map.md` with a one-line justification. Simulations are allowed but scoped as their own epic with a tiny deterministic model.
-- **Shared constraints are inherited verbatim:** deterministic coaching trees, no runtime LLM, SAMPLE data, `localStorage` progress, rewrite never paste, one join key, one unit per tick, 10-round error budget.
+- **Shared constraints are inherited verbatim:** deterministic coaching trees, no runtime LLM, educational/non-live data, `localStorage` progress, rewrite never paste, one join key, one unit per tick, 10-round error budget.
 
 ## Updating the skill
 

@@ -4,7 +4,7 @@ A **resource** is a teaching unit the learner can open. <!-- agent: list the cho
 
 **Not resources:** learning paths, the dashboard, and nav. Those find or sequence resources.
 
-All data is **SAMPLE / educational**. <!-- agent: one sentence on what this app is not (not a calculator / not a brokerage / not a replacement for a licensed electrician). -->
+All data is **educational practice content** (not live systems). Do not stamp SAMPLE on every page. <!-- agent: one sentence on what this app is not (not a calculator / not a brokerage / not a replacement for a licensed electrician). -->
 
 Teachable unit is `{{JOIN_KEY}}` (what you are learning). **Track** is which learner conversation the unit belongs to. Cognitive ability is the **resource type** (how you practice). The same `{{JOIN_KEY}}` should echo across types — see [`LOOPS/LOOP-Graph.md`](./LOOPS/LOOP-Graph.md).
 
@@ -79,6 +79,6 @@ Path milestones point at resources with `contentRefs` such as `guide:<slug>`, `c
 
 ### Step-by-step (coach)
 
-Deterministic graph: `start` + ≥2 continue layers, ≥2 `wrong` nodes with `rewind_to`, ≥1 `success` with empty choices. `meta.{{JOIN_KEY}}` = slug. First message is a SAMPLE setup. Teach **which method to pick**, not a quiz restated as buttons. No runtime LLM.
+Deterministic graph: `start` + ≥2 continue layers, ≥2 `wrong` nodes with `rewind_to`, ≥1 `success` with empty choices. `meta.{{JOIN_KEY}}` = slug. First message is an educational setup. Teach **which method to pick**, not a quiz restated as buttons. No runtime LLM.
 
 <!-- agent: add a contract block per remaining chosen type (drill item shape, case shape, lab checkpoint shape, simulation model + target shape). Keep each to ≤6 lines. -->

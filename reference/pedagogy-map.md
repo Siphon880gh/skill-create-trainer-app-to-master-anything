@@ -53,7 +53,7 @@ Floors turn rungs into counts: e.g. `guides_per_family 1`, `coach_per_guide 1`, 
 ## Anti-patterns
 
 - Every type thin "for completeness" → pick four to six and set real floors
-- Simulation as a general engine → one model per family, deterministic, SAMPLE values, no external physics library in P0
+- Simulation as a general engine → one model per family, deterministic, educational (non-live) values, no external physics library in P0
 - Games for every unit → the Games loop should record skips most ticks
 - Coach trees that are quizzes with buttons → teach *which method to pick*, with wrong branches that explain and rewind
 - Pasting textbook prose into guides → outline in `context/toc/`, rewrite in original words

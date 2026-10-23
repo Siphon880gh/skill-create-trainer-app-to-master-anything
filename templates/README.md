@@ -1,6 +1,6 @@
 # {{APP_NAME}} ({{CODENAME}})
 
-Learn **{{TOPIC}}** through <!-- agent: list the chosen resource types in learner language --> — with SAMPLE data only.
+Learn **{{TOPIC}}** through <!-- agent: list the chosen resource types in learner language --> — educational practice content, not live systems.
 
 **Author:** Weng Fei Fung (Weng)
 

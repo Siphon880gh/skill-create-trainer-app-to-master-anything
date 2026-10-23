@@ -7,7 +7,7 @@ description: >-
 
 # Add a <!-- agent: unit kind -->
 
-One valid unit per family. Slug = `{{JOIN_KEY}}` = guide slug. No runtime LLM. SAMPLE data.
+One valid unit per family. Slug = `{{JOIN_KEY}}` = guide slug. No runtime LLM. Educational / non-live data.
 
 ## Files
 
@@ -22,7 +22,7 @@ No register step if the runtime scans the directory. Otherwise list the registry
 
 Match an existing file such as `TODO path/<first-slug>.json`. Required parts:
 
-<!-- agent: per type. Coach minimum: `start` + two more continue layers, ≥2 `wrong` nodes with `rewind_to`, ≥1 `success` with empty choices; `meta.{{JOIN_KEY}}` = slug; first message is a SAMPLE setup; teach which method to pick. -->
+<!-- agent: per type. Coach minimum: `start` + two more continue layers, ≥2 `wrong` nodes with `rewind_to`, ≥1 `success` with empty choices; `meta.{{JOIN_KEY}}` = slug; first message is an educational setup; teach which method to pick. -->
 
 ## Verify
 

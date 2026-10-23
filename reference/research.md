@@ -57,7 +57,7 @@ Only in Phase 1, and only for:
 - A source you believe is essential is paywalled or blocks fetching (say what it is and why it matters)
 - A repo you want to clone has no license or a restrictive one
 - The topic is too broad to pick one persona and a Beginner path (offer two or three concrete framings)
-- The human's goal implies live data, credentials, or hardware access the app cannot have in SAMPLE mode
+- The human's goal implies live data, credentials, or hardware access the app cannot have as educational / non-live practice content
 
 Everything else: decide, record the decision in `.agents/state.json → decisions`, continue.
 

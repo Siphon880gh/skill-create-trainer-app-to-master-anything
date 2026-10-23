@@ -61,7 +61,7 @@ Park a node (treat as Done for graph purposes, note `parked: <epic>_missing`) wh
 ## Hard constraints (repeat in every emitted doc)
 
 - Deterministic coaching = decision graphs with `wrong` nodes that `rewind_to` a prior layer and ≥1 `success`; no runtime LLM
-- SAMPLE data; no LIVE / REAL_TIME theater
+- Educational / non-live practice data; no LIVE / REAL_TIME theater; do not stamp SAMPLE on every page
 - `localStorage` progress key, versioned (`<codename>_progress_v1`); corrupt → reset with recovery flag
 - Join key everywhere; resource type is a separate field/route
 - Rewrite context, never paste

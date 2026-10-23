@@ -6,11 +6,11 @@ Design context for `{{APP_SLUG}}` ({{CODENAME}}). All future UI work in this rep
 
 ### Users
 
-<!-- agent: persona, where they are when they use it, session length, what they must never be tricked into thinking (e.g. "this is not a licensed electrician"). Every number / reading is a SAMPLE. -->
+<!-- agent: persona, where they are when they use it, session length, what they must never be tricked into thinking (e.g. "this is not a licensed electrician"). Numbers / readings are educational practice data, not live systems — no need to stamp SAMPLE on every page. -->
 
 ### Brand personality
 
-<!-- agent: three words, then 3 bullets of concrete behaviors. The reference apps use: Focused. Honest. Quiet. — says SAMPLE out loud; names the method before the answer; no trophies, no confetti, no streak popups. -->
+<!-- agent: three words, then 3 bullets of concrete behaviors. The reference apps use: Focused. Honest. Quiet. — names the method before the answer; no trophies, no confetti, no streak popups; educational data without labeling every page SAMPLE. -->
 
 ### Aesthetic direction
 

@@ -83,13 +83,13 @@ Work queues (strict order), from `.agents/state.json` → `milestones`:
 2. **Implement the current story only**
    - Minimal changes that satisfy that story's Acceptance cell.
    - Prefer extending registries / existing patterns.
-   - Deterministic coaching graphs only; no runtime LLM; SAMPLE data; `localStorage` key `{{PROGRESS_KEY}}`.
+   - Deterministic coaching graphs only; no runtime LLM; educational/non-live data; `localStorage` key `{{PROGRESS_KEY}}`.
    - <!-- agent: per-epic implementation notes, one line each, e.g. "For E6: drill engine reads data/drills.json; timed; thought-chain reveal; no calculator chrome." -->
    - STOP (human verification) only if a story truly requires a credential, hardware, or paid API the agent cannot mock.
 
 3. **Automatic verification (required before marking progress)**
    - Run `{{VERIFY_CMD}}`.
-   - Check the story Acceptance + global conventions (progress key stable; SAMPLE labels; no 404 on missing coach; Beginner unlock order unchanged).
+   - Check the story Acceptance + global conventions (progress key stable; educational/non-live data; no 404 on missing coach; Beginner unlock order unchanged).
 
 4. **On PASS**
    - Update `.agents/state.json`: story/milestone progress, `next_action`, `last_updated_iso`, status fields.

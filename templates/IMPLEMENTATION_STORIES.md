@@ -13,7 +13,7 @@ Parent map: [`EPIC_MAP.md`](./EPIC_MAP.md) · Runtime state: [`.agents/state.jso
 - Stack: {{STACK_LABEL}}
 - Persist in `localStorage` (`{{PROGRESS_KEY}}`)
 - Join key: `{{JOIN_KEY}}`. Resource type is a separate field/route
-- SAMPLE / educational data only
+- Educational / non-live practice data only (no on-screen SAMPLE stamp required)
 - `context/` is ideas only — rewrite copy
 - Step coaching is deterministic; no runtime LLM
 - Do not start post-P0 until the MVP freeze checklist is met
